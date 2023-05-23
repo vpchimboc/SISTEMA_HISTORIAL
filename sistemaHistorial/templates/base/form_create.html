@@ -1,0 +1,39 @@
+{% extends 'home/home.html' %}
+{% load static %}
+{% block contenido %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
+        <div class="card bg-transparent border-0 mb-4">
+            <div class="card-header p-2">
+                <h5 class="text-center">{{ title_form }}</h5>
+            </div>
+            <div class="card-body bg-transparent p-0">
+                <br />
+                <form action="" id="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% block card_body %}
+
+                        {% endblock %}
+                    </div>
+
+                    <div class="text-center">
+                        {% if object %}
+                        <button type="submit" class="btn btn-success mx-auto">GUARDAR CAMBIOS
+                        </button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary mx-auto">GUARDAR DATOS
+                        </button>
+                        {% endif %}
+
+                        {% block atras %}
+                        
+                        {% endblock %}
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+<div class="container-fluid bg-light">
+    <div class="row">
+        <div class="col-lg-12 text-center bg-primary mx-auto p-3">
+            <h1 class="text-light">ATENCIÓN AL PACIENTE</h1>
+            <img src="{% static 'images/logo1.jpg' %}" width="280px" height="80px" alt="">
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    {% block contenido %}
+
+    {% endblock %}
+    <br/>
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12 text-center bg-danger mx-auto p-3">
+            <h4 class="text-light">CERRAR SESIÓN</h4>
+            <a href="{% url 'logout' %}" class="btn btn-outline-light">SALIR</a>
+        </div>
+    </div>
+    <br/>
+</div>
+</body>
+</html>

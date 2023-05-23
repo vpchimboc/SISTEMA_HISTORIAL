@@ -1,0 +1,33 @@
+{% extends 'base/form_list.html' %}
+{% load static %}
+
+{% block nuevo %}
+    <a href="{% url 'paciente_create' %}" class="btn btn-primary btn-sm">Nuevo</a>
+{% endblock %}
+
+{% block columnas %}
+    <th scope="col" style="width: 10%">#</th>
+    <th scope="col" style="width: 30%">NOMBRE</th>
+    <th scope="col" style="width: 30%">APELLIDO</th>
+    <th scope="col" style="width: 30%">DNI</th>
+{% endblock %}
+
+{% block filas %}
+    {% if paciente %}
+        {% for p in paciente %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'paciente_edit' p.pk %}">{{ p.nombre }}</a></td>
+                <td>{{ p.apellido }}</td>
+                <td>{{ p.dni }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No hay registros</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    {% endif %}
+{% endblock %}

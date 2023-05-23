@@ -1,0 +1,12 @@
+{% extends 'base/form_create.html' %}
+{% load static %}
+
+{% block card_body %}
+    <table class="mx-auto">
+        {{ form.as_table }}
+    </table>
+{% endblock %}
+
+{% block atras %}
+    <a href="{% url 'paciente_list' %}" class="btn btn-secondary">CANCELAR</a>
+{% endblock %}

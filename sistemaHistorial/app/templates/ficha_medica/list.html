@@ -1,0 +1,30 @@
+{% extends 'base/form_list.html' %}
+{% load static %}
+{% block nuevo %}
+    <a href="{% url 'ficha_medica_create' %}" class="btn btn-primary btn-sm">Nuevo</a>
+{% endblock %}
+{% block columnas %}
+    <th scope="col" style="width: 10%">#</th>
+    <th scope="col" style="width: 30%">NOMBRE</th>
+    <th scope="col" style="width: 30%">APELLIDO</th>
+    <th scope="col" style="width: 30%">DNI</th>
+{% endblock %}
+{% block filas %}
+    {% if ficha_medica %}
+        {% for f in ficha_medica %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'ficha_medica_edit' f.pk %}">{{ f.paciente.nombre }}</a></td>
+                <td>{{ f.paciente.apellido }}</td>
+                <td>{{ f.paciente.dni }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No hay registros</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    {% endif %}
+{% endblock %}

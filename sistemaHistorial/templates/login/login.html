@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load widget_tweaks %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+</head>
+<body>
+<section class="login-content" data-aos="fade-down">
+    <div class="login-box">
+        
+        <form class="login-form" method="POST" action="" autocomplete="nope">
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            <center>
+                <img src="{% static 'images/logo1.jpg' %}" width="250px" height="60px" alt="">
+            </center>
+            <h1 class="login-head">SISTEMA CLÍNICO</h1>
+            {% csrf_token %}
+            <div class="input-group mb-3 border border-primary rounded text-center">
+                {{ form.username | add_class:'form-control text-center border-0'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su usuario' }}
+            </div>
+            <div class="input-group mb-3 border border-primary rounded text-center">
+                {{ form.password | add_class:'form-control text-center border-0'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su clave' }}
+            </div>
+            <div class="input-group mb-3 border border-primary rounded text-center">
+                 <select name="tipo" class="form-control">
+                     <option value="1">ENFERMERA/O</option>
+                     <option value="2">MÉDICO</option>
+                 </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt text-warning"></i>&nbsp;&nbsp;INICIAR SESIÓN
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+</body>
+</html>

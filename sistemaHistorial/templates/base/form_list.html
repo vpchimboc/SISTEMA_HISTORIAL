@@ -1,0 +1,37 @@
+{% extends 'home/home.html' %}
+{% load static %}
+{% block contenido %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card bg-transparent mb-4 border-0">
+                <div class="card-header">
+                    <h3>{{ title_list }}</h3>
+                    <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">INICIO</a>
+                    {% block nuevo %}
+
+                    {% endblock %}
+                </div>
+                <div class="card-body bg-transparent p-0">
+                    <table class="table table-striped table-hover border w-100 rounded text-center">
+                        <thead>
+                        <tr>
+                            {% block columnas %}
+                            
+                            {% endblock %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% block filas %}
+                        
+                        {% endblock %}
+                        </tbody>
+                        {% block footer %}
+                        <h1>Pruebas</h1>
+                        
+                        {% endblock %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
