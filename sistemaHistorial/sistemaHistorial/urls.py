@@ -29,7 +29,7 @@ urlpatterns = [
 #3
     path('home/pacientes', PacienteListView.as_view(), name='paciente_list'),
     path('home/pacientes/create', PacienteCreateView.as_view(), name='paciente_create'),
-    path('home/pacientes/edit/<int:pk>', PacienteEditView.as_view(), name='paciente_edit'),
+    path('home/pacientes/edit/<slug:slug>', PacienteEditView.as_view(), name='paciente_edit'),
 #4
     path('home/ficha_medica', FichaMedicaListView.as_view(), name='ficha_medica_list'),
     path('home/ficha_medica/create', FichaMedicaCreateView.as_view(), name='ficha_medica_create'),

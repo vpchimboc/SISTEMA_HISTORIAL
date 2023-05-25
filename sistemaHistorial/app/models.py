@@ -1,3 +1,5 @@
+import uuid
+from autoslug import AutoSlugField
 from django.db import models
 
 # Create your models here.
@@ -13,13 +15,15 @@ class User(AbstractUser):
     direccion = models.CharField('Dirección', max_length=40, blank=True, null=True)
     genero = models.PositiveIntegerField("Género", choices=[(1, "MASCULINO"), (2, "FEMENINO")], default=1)
     tipo = models.PositiveIntegerField("Tipo", choices=[(1, "ENFERMERA/O"), (2, "MÉDICO")], default=1)
-
+   
     def __str__(self):
         return '{0} {1}'.format(self.first_name, self.last_name)
 
     class Meta:
         db_table = 'usuario'
         
+def generar_slug(instance):
+        return '{0}'.format(uuid.uuid4())
 
 class Paciente(models.Model):
     nombre = models.CharField("Nombres", max_length=65, null=False, blank=False)
@@ -33,7 +37,8 @@ class Paciente(models.Model):
     direccion = models.CharField("Dirección", max_length=60, null=True, blank=True)
     estado = models.BooleanField("Estado", default=True)
     fecha_registro = models.DateTimeField('Fecha de registro', auto_now=False, auto_now_add=True)
-
+    slug = AutoSlugField(populate_from=generar_slug, editable=False)
+       
     def __str__(self):
         return '{0} {1}'.format(self.nombre, self.apellido)
 
@@ -51,6 +56,7 @@ class Ficha_Medica(models.Model):
     alta = models.BooleanField("Dado de alta", default=False)
     estado = models.BooleanField("Estado", default=True)
     fecha_registro = models.DateTimeField('Fecha de registro', auto_now=False, auto_now_add=True)
+    slug = AutoSlugField(populate_from=generar_slug, editable=False)
 
     def __str__(self):
         return '{0} {1} {2}'.format(self.paciente.nombre, self.paciente.apellido, self.paciente.dni)
@@ -67,7 +73,8 @@ class Consulta(models.Model):
     observacion = models.CharField("Observación", max_length=100, blank=True, null=True)
     estado = models.BooleanField("Estado", default=True)
     fecha_registro = models.DateTimeField('Fecha de registro', auto_now=False, auto_now_add=True)
-
+    slug = AutoSlugField(populate_from=generar_slug, editable=False)
+    
     def __str__(self):
         return '{0} {1} {2}'.format(self.paciente.nombre, self.paciente.apellido, self.paciente.dni)
 

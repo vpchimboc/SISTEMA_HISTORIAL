@@ -18,7 +18,7 @@
         <form class="login-form" method="POST" action="" autocomplete="nope">
             <input type="hidden" name="next" value="{{ request.GET.next }}"/>
             <center>
-                <img src="{% static 'images/logo1.jpg' %}" width="250px" height="60px" alt="">
+                <img src="{% static 'images/logo.png' %}" width="250px" height="60px" alt="">
             </center>
             <h1 class="login-head">SISTEMA CLÍNICO</h1>
             {% csrf_token %}
@@ -39,6 +39,13 @@
                     <i class="fas fa-sign-in-alt text-warning"></i>&nbsp;&nbsp;INICIAR SESIÓN
                 </button>
             </div>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="text-center alert alert-{{ message.tags }}">
+                    {{ message|safe }}
+                </div>
+                {% endfor %}
+                {% endif %}
         </form>
     </div>
 </section>

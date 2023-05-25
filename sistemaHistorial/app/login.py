@@ -2,12 +2,12 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import FormView, RedirectView
-
+from django.contrib import messages
 import sistemaHistorial.settings as settings
 
  
@@ -31,10 +31,15 @@ class LoginView(FormView):
         user.save()
 
         next_url = self.request.GET.get('next')
+        messages.success(self.request, 'usuario logueado')
         if next_url:
             return HttpResponseRedirect(next_url)
+        
         return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
-
+    def form_invalid(self, form):
+        messages.warning(self.request, '{0} error'.format(form.errors))
+        return redirect(reverse('login'))
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context

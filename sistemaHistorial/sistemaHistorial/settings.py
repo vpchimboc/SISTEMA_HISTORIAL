@@ -24,12 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p^+u&x(@8#%0ek6+s@-@8(u+=3453djf=%(ejm!ys!+qv9g(+h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#para producción debe de ir FALSE
 DEBUG = True
 AUTH_USER_MODEL = 'app.User'
 ALLOWED_HOSTS = []
 #Especificar los archivos estaticos
 #este nombre es static
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_local'), ]
+#para producción debe de ir
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/home'

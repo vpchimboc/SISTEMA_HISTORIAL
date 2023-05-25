@@ -48,6 +48,7 @@ class PacienteEditView(LoginRequiredMixin, UpdateView):
     model = Paciente
     form_class = PacienteForm
     success_url = reverse_lazy('paciente_list')
+    slug_url_kwarg='slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,6 +83,7 @@ class FichaMedicaEditView(LoginRequiredMixin, UpdateView):
     model = Ficha_Medica
     form_class = FichaMedicaForm
     success_url = reverse_lazy('ficha_medica_list')
+    slug_url_kwarg='slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,7 +119,8 @@ class ConsultaEditView(LoginRequiredMixin, UpdateView):
     model = Consulta
     form_class = ConsultaForm
     success_url = reverse_lazy('consulta_list')
-
+    slug_url_kwarg='slug'
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_form'] = 'Editar Consulta'
